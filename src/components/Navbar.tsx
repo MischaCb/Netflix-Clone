@@ -6,9 +6,14 @@ import AccountMenu from "./AccountMenu";
 
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
 
   const toggleMobileMenu = useCallback(() => {
     setShowMobileMenu((current) => !current);
+  }, []);
+
+  const toggleAccountMenu = useCallback(() => {
+    setShowAccountMenu((current) => !current);
   }, []);
 
   return (
@@ -46,7 +51,7 @@ const Navbar = () => {
         </div>
         <div onClick={toggleMobileMenu} className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative">
           <p className="text-white text-sm">Browse</p>
-          <BsChevronDown className="text-white transition" />
+          <BsChevronDown className={`text-white transition ${showMobileMenu ? "rotate-180" : "rotate-0"}`} />
           <MobileMenu visible={showMobileMenu} />
         </div>
         <div className="flex flex-row ml-auto gap-7 items-center">
@@ -56,12 +61,12 @@ const Navbar = () => {
           <div className="text-gray-200 hover:text-gray-300 cursor-pointer transition">
             <BsBell />
           </div>
-          <div className="flex flex-row items-center gap-2 cursor-pointer relative">
+          <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 cursor-pointer relative">
             <div className="w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden">
               <img src="/images/default-slate.png" alt="" />
             </div>
-            <BsChevronDown className="text-white transition" />
-            <AccountMenu />
+            <BsChevronDown className={`text-white transition ${showAccountMenu ? "rotate-180" : "rotate-0"}`} />
+            <AccountMenu visible={showAccountMenu} />
           </div>
         </div>
       </div>
