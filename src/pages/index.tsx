@@ -21,9 +21,7 @@ export async function getServerSideProps(context: NextPageContext) {
   }
 }
 
-export default function Home() {
-  const { data } = useBillboard();
-  
+export default function Home() {  
   return (
     <>
       <Navbar />
